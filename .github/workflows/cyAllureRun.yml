@@ -1,7 +1,7 @@
 name: Cypress Tests using Cypress Docker Image with allure-report
 
 on: push
-        branches: [main]
+branches: [main]
 
 jobs:
     Run_test:
