@@ -4,5 +4,4 @@ reports
 screenshots
 cypress/downloads
 reports/**
-allure-report/**
 allure-results/**
