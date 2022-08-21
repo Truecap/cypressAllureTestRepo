@@ -1,38 +1,25 @@
 name: Cypress Tests using Cypress Docker Image with allure-report
 
-on: 
-  push:
-    branches: 
-      - main
+on:
+    push:
+        branches: [main]
 
 jobs:
     Run_test:
         runs-on: ubuntu-20.04 # Choosing OS
-          steps:
-            - name: Checkout
-              uses: actions/checkout@v2
-        
-            
-              example_matrix:
-                strategy:
-                  matrix:
-                    version: [10, 12, 14]
-                steps:
-                  - uses: actions/setup-node@v3
-                    with:
-                      node-version: ${{ matrix.version }}
+        strategy:
+            matrix:
+                node-version: [14.17.0]
                 # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-      
-            # - uses: actions/checkout@v2
-
-            # - name: Use Node.js ${{ matrix.node-version }}
-            #   uses: actions/setup-node@v2
-            #   with:
-            #       node-version: ${{ matrix.node-version }}
-            #       cache: "npm"
-            # - run: npm i npm@latest
-            # - run: npm i
+        steps:
+            - uses: actions/checkout@v2
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: "npm"
+            - run: npm i npm@latest
+            - run: npm i
             - name: run test
               run: npm run cy:run
             - name: Create Report
@@ -48,7 +35,7 @@ jobs:
               uses: JamesIves/github-pages-deploy-action@3.1.0
               if: always()
               with:
-                  ACCESS_TOKEN: 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
+                  ACCESS_TOKEN: ${{'secrets.ACCESS_TOKEN'}}
                   BRANCH: main # The branch the action should deploy to.
                   FOLDER: allure-report # The folder the action should deploy.
                   TARGET_FOLDER: docs
