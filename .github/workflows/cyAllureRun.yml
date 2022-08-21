@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  Run_test:
+  run_test:
       runs-on: ubuntu-20.04 # Choosing OS
         steps:
           - name: Checkout
