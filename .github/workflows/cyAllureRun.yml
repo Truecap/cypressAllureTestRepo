@@ -6,17 +6,17 @@ on:
       - main
 
 jobs:
-    Run_test:
-        runs-on: ubuntu-20.04 # Choosing OS
-          steps:
-            - name: Checkout
-              uses: actions/checkout@v2
+  Run_test:
+      runs-on: ubuntu-20.04 # Choosing OS
+        steps:
+          - name: Checkout
+            uses: actions/checkout@v2
       
           
-              example_matrix:
-                strategy:
-                  matrix:
-                    version: [10, 12, 14]
+            example_matrix:
+              strategy:
+                matrix:
+                  version: [10, 12, 14]
                 steps:
                   - uses: actions/setup-node@v3
                     with:
